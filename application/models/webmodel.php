@@ -54,18 +54,69 @@
 
     }
 
+    function update_karya($idkarya,$judulvideo,$keterangan,$kategori){
+
+            $data = array(
+              //  'id_karya'=> $idkarya ,
+              //  'id_uploader'=> $iduploader,
+                'judul_video'=> $judulvideo,
+                'keterangan'=> $keterangan ,
+                'kategori'=> $kategori
+            //    'filename'=>$filename
+
+            );
+
+            $this->db->where('id_karya', $idkarya);
+
+            $this->db->update('videos', $data);
+
+    }
+
     function get_karya(){
 
 
-              $queryKonserve= $this->db->query("SELECT * from videos");
-
-              if($queryKonserve->num_rows() > 0)
-              {
+              $queryKonserve= $this->db->get("videos");
+              $num = $queryKonserve->num_rows();
 
                   return $queryKonserve->result();
 
-              }
+
     }
+
+    function count_karya(){
+
+
+              $queryKonserve= $this->db->get("videos");
+              $num = $queryKonserve->num_rows();
+
+                  return $num;
+
+
+    }
+
+
+    function hitung_data_channel(){
+        $this->db->from('videos');
+        return $this->db->count_all_results();
+    }
+
+
+        function m_hapus($id){
+
+          $this->db-> where('id_karya', $id);
+          $this->db-> delete('videos');
+
+
+        }
+        function m_edit($data){
+
+          $this->db->where($data);
+          $edit = $this->db->get('videos');
+
+          return $edit->result();
+
+
+        }
 
  }
 

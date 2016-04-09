@@ -121,24 +121,12 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="#" data-toggle="modal" data-target="#myModal">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                      </ul>
-                    </li>
+
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<?php echo base_url();?>index.php/welcome/Yourchannel">Your Channel</a></li>
+                    <li><a href="<?php echo base_url();?>index.php/welcome/Yourchannel">Your Channel   </a></li>
                     <li>
                       <a href="../navbar-static-top/"></a>
                     </li>
@@ -158,27 +146,35 @@
       </div>
 
 
-
+      <?php foreach ($tampilHome as $key  ) {
+        # code...
+       ?>
 
       <div class="row">
         <div class="row">
           <div class="col-sm-3 col-md-6 col-lg-8" style="background-color: #cdcdcd;
           box-shadow: inset 1px -1px 1px #444,
           inset -1px 1px 1px #444;">
-          <span>Title</span>
 
-            <video src="<?php echo base_url();?>videos/vid2.mp4" autoplay poster="posterimage.jpg" width="600px" height="400px" controls >
+
+
+          <h1><?php echo $key->judul_video;?> </h1> <span><span>
+
+            <video src="<?php echo base_url();?>videos/<?php echo $key->filename;?>"  width="600px" height="400px" controls >
               <track kind="subtitles" src="foo.en.vtt" srclang="en" label="English">
             </video>
            </div>
           <div class="col-sm-9 col-md-6 col-lg-4" style="background-color: #dedef8;
-box-shadow: inset 1px -1px 1px #444,
-inset -1px 1px 1px #444;">
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+          box-shadow: inset 1px -1px 1px #444,
+          inset -1px 1px 1px #444;">
+            <p>
+
+              <?php echo $key->keterangan;?>
+
             </p>
-            <p> Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-            </p>
+
           </div>
+
         </div>
 
 
@@ -189,6 +185,8 @@ inset -1px 1px 1px #444;">
 
 
       </div>
+
+        <?php } ?>
       <!-- /#page-content-wrapper -->
 
     </div>

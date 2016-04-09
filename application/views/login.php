@@ -7,9 +7,9 @@
 <title>Login</title>
 <style>
 body {
-    background: url('<?php echo base_url(); ?>assets/gambar/Eor57Ae.jpg') no-repeat fixed center center;
+    background: url('<?php echo base_url(); ?>gambar/loginbg.jpg') no-repeat fixed center center;
     background-size: cover;
-    font-family: Montserrat;
+    font-family: TimesNewRoman;
 }
 
 .logo {
@@ -55,7 +55,7 @@ body {
 }
 
 .login-block input#username:focus {
-    background: #fff  url('<?php echo base_url(); ?>gambar/u0XmBmv.png') 20px bottom no-repeat;
+    background: #ffd  url('<?php echo base_url(); ?>gambar/u0XmBmv.png') 20px bottom no-repeat;
     background-size: 16px 80px;
 }
 
@@ -70,13 +70,13 @@ body {
 }
 
 .login-block input:active, .login-block input:focus {
-    border: 1px solid #ff656c;
+    border: 1px solid #faaaac;
 }
 
 .login-block button {
     width: 100%;
     height: 40px;
-    background: #ff656c;
+    background: #ff123c;
     box-sizing: border-box;
     border-radius: 5px;
     border: 1px solid #e15960;
@@ -90,21 +90,26 @@ body {
 }
 
 .login-block button:hover {
-    background: #ff7b81;
+    background: #fa7b33;
 }
+
+ 
 
 </style>
 </head>
 
 <body>
 
-<div class="error logo"><?php echo validation_errors();?></div>
+
 <div class="login-block">
+
     <form method="post" action="<?php echo base_url(); ?>index.php/welcome/loginAdmin">
     <h1>Login</h1>
     <input type="text" name="username" placeholder="Username" id="username"   />
     <input type="password" name="password" placeholder="Password" id="password"   />
     <button>Login</button>
+    <div class="error logo"><?php echo validation_errors();?></div>
+
 </div>
 </body>
 

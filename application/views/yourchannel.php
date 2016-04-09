@@ -85,7 +85,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h1>About Section</h1>
+
         </div>
       </div>
 
@@ -99,20 +99,90 @@
           <div class="panel panel-primary">
             <div class="panel-heading">Isi data dengan benar </div>
             <div class="panel-body">
-              <form class="" action="<?php echo base_url();?>index.php/welcome/upload" method="post" enctype="multipart/form-data">
+              <form class="form-group" action="<?php echo base_url();?>index.php/welcome/upload" method="post" enctype="multipart/form-data">
 
                 <input type="text" name="judulvideo" placeholder="Judul Video">
 
                 <input type="text" name="keterangan" placeholder="Keterangan">
 
-                <input type="text" name="kategori" placeholder="Kategori">
+                <!-- <input type="text" name="kategori" placeholder="Kategori"> -->
+                <select class="select" name="kategori">
 
+                  <option>JAVA</option>
+                  <option>C</option>
+                  <option>C++</option>
+                  <option>ANDROID</option>
+                  <option>COBOL</option>
+                  <option>FORTRAN</option>
+                  <option>BASIC</option>
+                  <option>PHP</option>
+                  <option>JAVASCRIPT</option>
+                  <option>PHP</option>
+                  <option>ANGULARJS</option>
+                  <option>METEORJS</option>
+
+
+
+
+
+                </select>
 
                 <input type="file" name="userfile">
 
                 <input type="submit" value="Upload" class="btn btn-primary">
 
               </form>
+              <table class="table">
+                <thead class="panel panel-success success">
+                  <td>
+                    ID VIDEOS
+                  </td>
+                  <td>
+                    JUDUL VIDEO
+                  </td>
+                  <td>
+                    KETERANGAN
+                  </td>
+                  <td>
+                    FILENAME
+                  </td>
+                  <td>
+                    CRUD OPERATION
+                  </td>
+
+                </thead>
+                <tr>
+
+                  <?php foreach ($tampilData as  $value) {
+
+                        ?>
+
+                    <td>
+                      <?php echo $value->id_karya;?>
+                    </td>
+                    <td>
+                      <?php echo $value->judul_video;?>
+                    </td>
+                    <td>
+                      <?php echo $value->keterangan;?>
+                    </td>
+                    <td>
+                      <?php echo $value->filename;?>
+                    </td>
+                    <td>
+                      <a href="<?php echo base_url();?>index.php/welcome/edit/<?php echo $value->id_karya; ?>"><span class=" warning glyphicon glyphicon-pencil"></span></a>
+                      <a href="<?php echo base_url();?>index.php/welcome/hapusVideo/<?php echo $value->id_karya; ?>"><span class="warning  glyphicon glyphicon-remove"></span></a>
+                      <a href="#"><span class="warning  glyphicon glyphicon-star"></span></a>
+
+                    </td>
+
+                </tr>
+                <?php
+
+              }?>
+
+              </table>
+
             </div>
           </div>
 
@@ -120,57 +190,22 @@
       </div>
 
       <div class="row">
-        <div class="col-lg-12">
-          <div class="panel panel-success">
-            <div class="panel-heading">Your Videos</div>
-            <div class="panel-body">
-                <table class="table">
-                    <thead class="panel panel-success success">
-                        <td>
-                            ID VIDEOS
-                        </td>
-                        <td>
-                            JUDUL VIDEO
-                        </td>
-                        <td>
-                            KETERANGAN
-                        </td>
-                        <td>
-                           CRUD OPERATION
-                        </td>
+        <span><h1>TITLE</h1></span>
+        <video width="600px" height="400px" src="<?php echo base_url();?>videos/<?php echo $value->filename;?>" controls </video>
 
-                      </thead>
-                      <tr>
 
-                        <?php foreach ($tampilData as  $value) {
+          <div class="col-lg-12">
+            <div class="panel panel-success">
+              <div class="panel-heading">Your Videos @2016</div>
+              <div class="panel-body">
 
-                          ?>
 
-                        <td>
-                          <?php echo $value->id_karya;?>
-                        </td>
-                        <td>
-                            <?php echo $value->judul_video;?>
-                        </td>
-                        <td>
-                            <?php echo $value->keterangan;?>
-                        </td>
-                        <td>
-                           <?php echo $value->keterangan;?>
-                        </td>
-
-                      </tr>
-                        <?php
-                            break;
-                      }?>
-
-                </table>
-
+              </div>
             </div>
-          </div>
 
-        </div>
+          </div>
       </div>
+
 
 
 

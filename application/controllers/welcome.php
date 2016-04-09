@@ -2,6 +2,9 @@
 
 class Welcome extends CI_Controller {
 
+
+
+
 	public function index()
 	{
     if($this->session->userdata('validamin'))
@@ -20,9 +23,20 @@ class Welcome extends CI_Controller {
 
 	function home()
 	{
+		$this->load->model('webmodel');
 		$username = $this->session->userdata('uname');
+ 	 	$data['tampilHome'] = $this->webmodel->get_karya();
+ 	  
+
+
 		$data['unameku']= $username;
 		$this->load->view('welcome_message.php',$data);
+
+	}
+
+	function about(){
+
+				$this->load->view('about');
 
 	}
 
@@ -73,7 +87,7 @@ class Welcome extends CI_Controller {
 
  function upload() {
 			 $config['upload_path'] = './videos/';
-			 $config['allowed_types'] = '*';
+		 	 $config['allowed_types'] = '*';
 			 //$config['max_size'] = '5000';
 			 $this->load->library('upload', $config);
 			 if ( ! $this->upload->do_upload('userfile')) {
@@ -153,18 +167,53 @@ class Welcome extends CI_Controller {
 		 }
 	 }
 
-	 public function InsertVideo(){
-		 $username = $this->session->userdata('uname');
-		 $uid = $this->session->userdata('userid');
-		 	//	$data['unameku']= $username;
+	 public function UpdateVideo($idkarya){
+				//  $username = $this->session->userdata('uname');
+				//  $uid = $this->session->userdata('userid');
+				//  	//	$data['unameku']= $username;
+				 //
+		 	$this->load->model('webmodel');
+				// 	$idkarya = null;
+				// 	$iduploader = $uid ;
+		 		$judulvideo = $this->input->post('judulvideo');
+		  	$keterangan = $this->input->post('keterangan');
+		 		$kategori = $this->input->post('kategori');
+				$this->webmodel->update_karya($idkarya,$judulvideo,$keterangan,$kategori);
 
-			$this->load->model('webmodel');
-			$idkarya = null;
-			$iduploader = $uid ;
-			$judulvideo = $this->input->post('judulvideo');
-			$keterangan = $this->input->post('keterangan');
-			$kategori = $this->input->post('keterangan');
-			$this->webmodel->insert_karya($idkarya,$iduploader,$judulvideo,$keterangan,$kategori);
+				 $this->Yourchannel();
+	 }
+
+	 function hapusVideo($idkarya)
+   {
+
+     $this->load->model("webmodel");
+     $this->webmodel->m_hapus($idkarya);
+
+     $this->Yourchannel();
+
+   }
+
+	 function edit($id){
+
+     $this->load->model('webmodel');
+
+		 $data['tampilData'] = $this->webmodel->get_karya();
+		 $username = $this->session->userdata('uname');
+		 $data['unameku']= $username;
+
+		   $thek=array(
+      'id_karya'=>$id
+     );
+     $data['data_edit']=$this->webmodel->m_edit($thek);
+
+     $this->load->view('edityourchannel',$data);
+
+   }
+
+	 function get_video(){
+
+		 		$this->load->model('webmodel');
+				$this->webmodel->get_karya();
 
 
 	 }
@@ -172,11 +221,13 @@ class Welcome extends CI_Controller {
 
 
 
-  public function logout(){
+	  public function logout(){
 
-        $this->session->sess_destroy();
-        redirect('welcome');
- }
+	        $this->session->sess_destroy();
+	        redirect('welcome');
+	 }
+
+
 
 
 
