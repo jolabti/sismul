@@ -93,7 +93,16 @@ body {
     background: #fa7b33;
 }
 
- 
+.link{
+
+    color: #5859aa;
+    padding-top: 10px;
+    margin-top: 10px;
+
+
+}
+
+
 
 </style>
 </head>
@@ -108,7 +117,11 @@ body {
     <input type="text" name="username" placeholder="Username" id="username"   />
     <input type="password" name="password" placeholder="Password" id="password"   />
     <button>Login</button>
+    <center>
+    <a class="link" href="<?php echo base_url(); ?>index.php/welcome/signup">Belum daftar ?</a>
+    </center>
     <div class="error logo"><?php echo validation_errors();?></div>
+
 
 </div>
 </body>

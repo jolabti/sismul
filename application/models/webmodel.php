@@ -54,6 +54,22 @@
 
     }
 
+
+
+    function insert_pengguna($username,$password,$email){
+      $data = array(
+          'id'=> "",
+          'username'=> $username ,
+          'password'=> $password,
+          'email'=> $email
+
+
+      );
+
+      $this->db->insert('user',$data);
+
+    }
+
     function update_karya($idkarya,$judulvideo,$keterangan,$kategori){
 
             $data = array(

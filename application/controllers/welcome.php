@@ -2,23 +2,16 @@
 
 class Welcome extends CI_Controller {
 
-
-
-
 	public function index()
 	{
     if($this->session->userdata('validamin'))
     {
          $this->home();
-
     }
-    else{
-
+    else
+		{
         $this->loginAdmin();
-    }
-
-
-
+	  }
 	}
 
 	function home()
@@ -26,7 +19,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('webmodel');
 		$username = $this->session->userdata('uname');
  	 	$data['tampilHome'] = $this->webmodel->get_karya();
- 	  
+
 
 
 		$data['unameku']= $username;
@@ -34,10 +27,14 @@ class Welcome extends CI_Controller {
 
 	}
 
+
+	function signup(){
+
+			$this->load->view('signup');
+	}
+
 	function about(){
-
 				$this->load->view('about');
-
 	}
 
 	function loginAdmin()
@@ -105,45 +102,11 @@ class Welcome extends CI_Controller {
 				 $iduploader = $uid ;
 				 $judulvideo = $this->input->post('judulvideo');
 				 $keterangan = $this->input->post('keterangan');
-				 $kategori = $this->input->post('keterangan');
+				 $kategori = $this->input->post('kategori');
 				 $filename=$file_data['file_name'];
 				 $this->webmodel->insert_karya($idkarya,$iduploader,$judulvideo,$keterangan,$kategori,$filename);
 
 				 $this->Yourchannel();
-
-
-
-
-
-
-
-
-
-				 /*$judul=$this->input->post('judul');
-				 $isi=$this->input->post('isi');
-				 $kategori=$this->input->post('kategori');
-
-				 $kontributor=$this->input->post('kontributor');
-
-
-
-
-					 $data = array(
-						 	 'id_news'=> null ,
-							 'judul'=> $judul,
-							 'isi'=> $isi,
-							 'kategori'=> $kategori,
-							 'kontributor'=> $kontributor,
-							 'filename'=> $file_data['file_name']
-
-
-
-
-					 );
-
-					 */
-						//	$this->db->insert('news', $data);
-
 
 			 }
 	 }
@@ -190,6 +153,19 @@ class Welcome extends CI_Controller {
      $this->webmodel->m_hapus($idkarya);
 
      $this->Yourchannel();
+
+   }
+	 function insertUser()
+   {
+
+     $this->load->model("webmodel");
+		 $username= $this->input->post('username');
+		 $password= $this->input->post('password');
+		 $email= $this->input->post('email');
+
+		 $this->webmodel->insert_pengguna($username,$password,$email);
+
+     redirect('welcome');
 
    }
 
